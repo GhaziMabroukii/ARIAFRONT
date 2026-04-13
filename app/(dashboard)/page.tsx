@@ -182,6 +182,7 @@ export default function DashboardPage() {
             trend={{ value: 12, isPositive: false }}
             className="animate-fade-in"
             style={{ animationDelay: "0ms" }}
+            href="/alerts"
           />
           <StatCard
             title="Critical Alerts"
@@ -191,6 +192,7 @@ export default function DashboardPage() {
             variant="critical"
             className="animate-fade-in"
             style={{ animationDelay: "50ms" }}
+            href="/alerts?severity=critical"
           />
           <StatCard
             title="Open Incidents"
@@ -200,6 +202,7 @@ export default function DashboardPage() {
             variant="warning"
             className="animate-fade-in"
             style={{ animationDelay: "100ms" }}
+            href="/incidents?status=open"
           />
           <StatCard
             title="Active Investigations"
@@ -208,6 +211,7 @@ export default function DashboardPage() {
             icon={Search}
             className="animate-fade-in"
             style={{ animationDelay: "150ms" }}
+            href="/investigations?status=running"
           />
           <StatCard
             title="Pending Approvals"
@@ -217,6 +221,7 @@ export default function DashboardPage() {
             variant={data.pending_approvals > 0 ? "warning" : "success"}
             className="animate-fade-in"
             style={{ animationDelay: "200ms" }}
+            href="/investigations?status=awaiting_approval"
           />
         </div>
 

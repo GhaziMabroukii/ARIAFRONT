@@ -3,8 +3,9 @@
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { AnimatedCounter } from "@/components/animated-counter";
-import { type LucideIcon, TrendingUp, TrendingDown } from "lucide-react";
+import { type LucideIcon, TrendingUp, TrendingDown, ExternalLink } from "lucide-react";
 import { type CSSProperties } from "react";
+import Link from "next/link";
 
 interface StatCardProps {
   title: string;
@@ -19,6 +20,7 @@ interface StatCardProps {
   className?: string;
   style?: CSSProperties;
   onClick?: () => void;
+  href?: string;
 }
 
 export function StatCard({
@@ -31,8 +33,9 @@ export function StatCard({
   className,
   style,
   onClick,
+  href,
 }: StatCardProps) {
-  return (
+  const cardContent = (
     <Card
       className={cn(
         "group relative overflow-hidden transition-all duration-300 hover-lift cursor-pointer",
@@ -127,8 +130,25 @@ export function StatCard({
       {variant === "critical" && value > 0 && (
         <div className="absolute -right-2 -top-2 h-8 w-8 animate-pulse rounded-full bg-destructive/20 blur-xl" />
       )}
+      
+      {/* Link indicator */}
+      {href && (
+        <div className="absolute right-3 top-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+          <ExternalLink className="h-4 w-4 text-muted-foreground" />
+        </div>
+      )}
     </Card>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className="block">
+        {cardContent}
+      </Link>
+    );
+  }
+
+  return cardContent;
 }
 
 // Skeleton loader for stat card
