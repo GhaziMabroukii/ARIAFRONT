@@ -546,3 +546,175 @@
 .status-dot.running::after {
   background: oklch(0.72 0.2 200 / 0.5);
 }
+
+/* Enhanced card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 40px oklch(0 0 0 / 0.08),
+    0 0 1px oklch(0 0 0 / 0.1);
+}
+
+.dark .card-hover:hover {
+  box-shadow: 
+    0 10px 40px oklch(0 0 0 / 0.25),
+    0 0 1px oklch(1 0 0 / 0.05);
+}
+
+/* Smooth page transitions */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: page-enter 0.4s ease-out forwards;
+}
+
+/* Button press effect */
+.button-press:active {
+  transform: scale(0.97);
+}
+
+/* Input focus ring animation */
+@keyframes focus-ring {
+  0% {
+    box-shadow: 0 0 0 0 oklch(0.72 0.2 200 / 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 4px oklch(0.72 0.2 200 / 0);
+  }
+}
+
+.input-focus-ring:focus {
+  animation: focus-ring 0.3s ease-out;
+}
+
+/* Text gradient animation */
+.text-gradient-animate {
+  background: linear-gradient(
+    135deg,
+    oklch(0.72 0.2 200),
+    oklch(0.65 0.22 145),
+    oklch(0.72 0.2 200)
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: border-flow 3s ease infinite;
+}
+
+/* Tooltip arrow */
+.tooltip-arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+  transform: rotate(45deg);
+}
+
+/* Badge pulse for notifications */
+@keyframes badge-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.badge-pulse {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+/* Smooth scrollbar for scrollable areas */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.5 0.01 260 / 0.3) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: oklch(0.5 0.01 260 / 0.3);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.5 0.01 260 / 0.5);
+}
+
+/* Row highlight animation */
+@keyframes row-highlight {
+  0% {
+    background-color: oklch(0.72 0.2 200 / 0.15);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.row-highlight-new {
+  animation: row-highlight 2s ease-out;
+}
+
+/* Subtle breathing animation for live indicators */
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-breathe {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* Counter number flip animation */
+@keyframes number-flip {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.number-flip {
+  animation: number-flip 0.3s ease-out;
+}
+
+/* Loading shimmer for skeletons */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.5 0.01 260 / 0.05) 0%,
+    oklch(0.5 0.01 260 / 0.15) 50%,
+    oklch(0.5 0.01 260 / 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}

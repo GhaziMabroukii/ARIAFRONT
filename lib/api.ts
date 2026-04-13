@@ -212,6 +212,12 @@ export const investigationsAPI = {
   },
   get: (id: string) => fetchAPI<Investigation>(`/api/investigations/${id}`),
   getPlaybook: (id: string) => fetchAPI<Playbook>(`/api/investigations/${id}/playbook`),
+  getPlaybookYaml: (id: string) => fetchAPI<{ yaml: string }>(`/api/investigations/${id}/playbook/yaml`),
+  updatePlaybook: (id: string, data: { steps?: PlaybookStep[]; yaml?: string }) =>
+    fetchAPI<Playbook>(`/api/investigations/${id}/playbook`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    }),
   approvePlaybook: (id: string) =>
     fetchAPI<{ status: string }>(`/api/investigations/${id}/playbook/approve`, { method: "POST" }),
   declinePlaybook: (id: string, reason: string) =>

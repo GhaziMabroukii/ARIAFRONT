@@ -14,7 +14,7 @@ import {
   ChevronRight,
   AlertTriangle,
 } from "lucide-react";
-import { investigationsAPI, type Investigation, type Playbook, type AIAnalysis } from "@/lib/api";
+import { investigationsAPI, type Investigation, type Playbook, type AIAnalysis, type PlaybookStep } from "@/lib/api";
 import { useWSSubscription, type WSMessage } from "@/lib/websocket";
 import { PageHeader } from "@/components/page-header";
 import { StatusBadge } from "@/components/status-badge";
@@ -180,6 +180,16 @@ export default function InvestigationDetailPage({
       console.error("Failed to execute playbook:", error);
     } finally {
       setIsActioning(false);
+    }
+  };
+
+  const handleSavePlaybook = async (updatedPlaybook: Playbook) => {
+    try {
+      await investigationsAPI.updatePlaybook(id, { steps: updatedPlaybook.steps });
+      mutate();
+    } catch (error) {
+      console.error("Failed to save playbook:", error);
+      throw error;
     }
   };
 
@@ -392,9 +402,11 @@ export default function InvestigationDetailPage({
               playbook={playbookData}
               canApprove={canApprove}
               canExecute={canExecute}
+              canEdit={data.status === "awaiting_approval" || data.status === "pending"}
               onApprove={handleApprove}
               onDecline={handleDecline}
               onExecute={handleExecute}
+              onSave={handleSavePlaybook}
               isLoading={isActioning}
             />
 
